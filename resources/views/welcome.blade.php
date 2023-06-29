@@ -9,7 +9,10 @@
 </head>
 
 <body>
-
+    <h2>
+        <a href="/users">Users</a>
+        <a href="/tickets">Tickets</a>
+    </h2>
 </body>
 
 </html>
