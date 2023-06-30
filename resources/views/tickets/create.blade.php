@@ -1,3 +1,7 @@
+<header>
+    <h1>Criar ticket</h1>
+</header>
+
 <form method="POST" action="/tickets/store" enctype="multipart/form-data">
     @csrf
     <div>

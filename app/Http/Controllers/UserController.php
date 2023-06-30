@@ -17,8 +17,7 @@ class UserController extends Controller {
 
     public function show(User $user) {
         return view('users.show', [
-            'user' => $user,
-            'tickets' => $user->tickets()->get()
+            'user' => $user
         ]);
     }
 }

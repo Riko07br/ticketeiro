@@ -1,4 +1,7 @@
-<h1>Todos os usuários</h1>
+<header>
+    <h1>Todos os usuários</h1>
+</header>
+
 @if (count($users) == 0)
     <h1>Sem tickets</h1>
 @else
