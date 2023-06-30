@@ -22,6 +22,10 @@ Route::get('/', function () {
 //Get all tickets
 Route::get('/tickets', [TicketController::class, 'index']);
 
+Route::post('/tickets/store', [TicketController::class, 'store']);
+
+Route::get('/tickets/create', [TicketController::class, 'create']);
+
 Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
 
 //Get all users

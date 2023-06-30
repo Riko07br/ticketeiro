@@ -1,3 +1,7 @@
+<header>Tickets</header>
+
+<a href="/tickets/create">Criar ticket</a>
+
 @if (count($tickets) == 0)
     <h1>Sem tickets</h1>
 @else
