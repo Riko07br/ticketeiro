@@ -23,6 +23,10 @@ class Ticket extends Model {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function agent() {
+        return $this->belongsTo(User::class, 'agent_id');
+    }
+
     public function stat() {
         return $this->belongsTo(Stat::class, 'stat_id');
     }

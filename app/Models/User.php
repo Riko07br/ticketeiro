@@ -42,7 +42,11 @@ class User extends Authenticatable {
         'password' => 'hashed',
     ];
 
-    public function tickets() {
+    public function user_tickets() {
         return $this->hasMany(Ticket::class, 'user_id');
+    }
+
+    public function agent_tickets() {
+        return $this->hasMany(Ticket::class, 'agent_id');
     }
 }

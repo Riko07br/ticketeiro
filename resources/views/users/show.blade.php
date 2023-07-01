@@ -4,7 +4,7 @@
 
 <h2>{{ $user->name }}</h2>
 <ul>
-    @foreach ($user->tickets as $ticket)
+    @foreach ($tickets as $ticket)
         <li>
             <a href="/tickets/{{ $ticket->id }}">
                 {{ $ticket->title }}

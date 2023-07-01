@@ -9,7 +9,7 @@
         @foreach ($users as $user)
             <li>
                 <a href="/users/{{ $user->id }}">
-                    {{ $user->name }}
+                    {{ $user->name }} {{ $user->user_type }}
                 </a>
             </li>
         @endforeach

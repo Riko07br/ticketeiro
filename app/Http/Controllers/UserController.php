@@ -16,8 +16,18 @@ class UserController extends Controller {
     }
 
     public function show(User $user) {
+
+        if ($user->user_type == "adm") {
+            $tickets = Ticket::all();
+        } else if ($user->user_type == "agt") {
+            $tickets = $user->agent_tickets()->get();
+        } else {
+            $tickets = $user->user_tickets()->get();
+        }
+
         return view('users.show', [
-            'user' => $user
+            'user' => $user,
+            'tickets' => $tickets
         ]);
     }
 }

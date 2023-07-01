@@ -31,8 +31,19 @@ class DatabaseSeeder extends Seeder {
      */
     public function run(): void {
 
+        User::factory()->create([
+            'user_type' => "adm",
+        ]);
+
         $userAmount = 10;
-        User::factory($userAmount)->create();
+        User::factory($userAmount)->create([
+            'user_type' => "usr",
+        ]);
+
+        $agentAmount = 3;
+        User::factory($agentAmount)->create([
+            'user_type' => "agt",
+        ]);
 
         $categories = array('Uncategorized', 'Payment', 'Usability', 'Tecnical', 'Fire related');
         foreach ($categories as $c) {
@@ -66,20 +77,13 @@ class DatabaseSeeder extends Seeder {
         for ($i = 1; $i < ($ticketAmount + 1); $i++) {
             $ticket = Ticket::factory()->create([
                 'user_id' => rand(1, $userAmount),
+                'agent_id' => rand($userAmount + 1, $userAmount + $agentAmount),
                 'stat_id' => rand(1, count($stats)),
                 'priority_id' => rand(1, count($priorities))
             ]);
 
             $ticket->categories()->sync($this->random_id_array(count($categories)));
             $ticket->labels()->sync($this->random_id_array(count($labels)));
-
-            // $labelAmount = rand(1, count($labels));
-            // $labelArray = array();
-            // for ($j = 1; $j < $labelAmount; $j++) {
-            //     array_push($labelArray, rand(1, $labelAmount));
-            // }
-            // $labelArray = array_unique($labelArray);
-            // $ticket->labels()->sync($labelArray);
         }
     }
 }
