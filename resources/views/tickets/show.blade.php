@@ -12,8 +12,20 @@
         <td>{{ $ticket->description }}</td>
     </tr>
     <tr>
-        <td>Categoria</td>
-        <td>{{ $ticket->category->title }}</td>
+        <td>Categorias</td>
+        <td>
+            @foreach ($ticket->categories as $category)
+                {{ $category->title }} /
+            @endforeach
+        </td>
+    </tr>
+    <tr>
+        <td>Labels</td>
+        <td>
+            @foreach ($ticket->labels as $label)
+                {{ $label->title }} /
+            @endforeach
+        </td>
     </tr>
     <tr>
         <td>Status</td>
