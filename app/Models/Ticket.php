@@ -31,7 +31,11 @@ class Ticket extends Model {
         return $this->belongsTo(Priority::class, 'priority_id');
     }
 
-    public function category() {
-        return $this->belongsTo(Category::class, 'category_id');
+    public function categories() {
+        return $this->belongsToMany(Category::class)->using(CategoryTicket::class);
+    }
+
+    public function labels() {
+        return $this->belongsToMany(Label::class)->using(LabelTicket::class);
     }
 }
