@@ -9,15 +9,13 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('category_ticket', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('stat_id');
-            $table->foreignId('priority_id');
-            $table->string('title');
-            $table->mediumText('description');
-            $table->mediumText('files')->nullable();
+            $table->foreignId('category_id');
+            $table->foreignId('ticket_id');
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('ticket_id')->references('id')->on('tickets');
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('category_ticket');
     }
 };
