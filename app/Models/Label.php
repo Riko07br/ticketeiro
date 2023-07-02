@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Label extends Model {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+    ];
+
     public function tickets() {
         return $this->belongsToMany(Ticket::class)->using(LabelTicket::class);
     }

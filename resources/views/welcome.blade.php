@@ -13,6 +13,7 @@
         <a href="/users">Users</a>
         <a href="/tickets">Tickets</a>
         <a href="/categories">Categorias</a>
+        <a href="/labels">Etiquetas</a>
     </h2>
 </body>
 
