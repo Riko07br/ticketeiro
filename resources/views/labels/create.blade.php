@@ -2,7 +2,7 @@
     <h1>Criar etiqueta</h1>
 </header>
 
-<form method="POST" action="/labels/store" enctype="multipart/form-data">
+<form method="POST" action="/labels" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="title">Nome da etiqueta</label>

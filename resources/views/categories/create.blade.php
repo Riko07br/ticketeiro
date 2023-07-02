@@ -2,7 +2,7 @@
     <h1>Criar categoria</h1>
 </header>
 
-<form method="POST" action="/categories/store" enctype="multipart/form-data">
+<form method="POST" action="/categories" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="title">Nome da categoria</label>

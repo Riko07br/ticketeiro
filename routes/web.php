@@ -21,30 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Labels-----
-Route::get('/labels', [LabelController::class, 'index']);
-
-Route::get('/labels/create', [LabelController::class, 'create']);
-
-Route::post('/labels/store', [LabelController::class, 'store']);
-
-//Categories-----
-Route::get('/categories', [CategoryController::class, 'index']);
-
-Route::get('/categories/create', [CategoryController::class, 'create']);
-
-Route::post('/categories/store', [CategoryController::class, 'store']);
-
-//Tickets-------
-Route::get('/tickets', [TicketController::class, 'index']);
-
-Route::get('/tickets/create', [TicketController::class, 'create']);
-
-Route::post('/tickets/store', [TicketController::class, 'store']);
-
-Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
-
-//Users---------
-Route::get('/users', [UserController::class, 'index']);
-
-Route::get('/users/{user}', [UserController::class, 'show']);
+Route::resource('categories', CategoryController::class)->only('index', 'create', 'store');
+Route::resource('labels', LabelController::class)->only('index', 'create', 'store');
+Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show');
+Route::resource('users', UserController::class)->only('index', 'show');

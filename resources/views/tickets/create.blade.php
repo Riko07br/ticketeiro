@@ -2,7 +2,7 @@
     <h1>Criar ticket</h1>
 </header>
 
-<form method="POST" action="/tickets/store" enctype="multipart/form-data">
+<form method="POST" action="/tickets" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="user">Selecione o usuario - APAGAR</label>
