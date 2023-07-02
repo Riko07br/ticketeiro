@@ -12,6 +12,7 @@
     <h2>
         <a href="/users">Users</a>
         <a href="/tickets">Tickets</a>
+        <a href="/categories">Categorias</a>
     </h2>
 </body>
 

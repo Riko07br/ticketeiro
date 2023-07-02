@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,12 +20,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Get all categories
+Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::get('/categories/create', [CategoryController::class, 'create']);
+
+Route::post('/categories/store', [CategoryController::class, 'store']);
+
 //Get all tickets
 Route::get('/tickets', [TicketController::class, 'index']);
 
-Route::post('/tickets/store', [TicketController::class, 'store']);
-
 Route::get('/tickets/create', [TicketController::class, 'create']);
+
+Route::post('/tickets/store', [TicketController::class, 'store']);
 
 Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
 

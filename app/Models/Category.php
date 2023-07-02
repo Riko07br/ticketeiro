@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+    ];
+
     public function tickets() {
         return $this->belongsToMany(Ticket::class)->using(CategoryTicket::class);
     }
