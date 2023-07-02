@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Label;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -22,7 +24,8 @@ class TicketController extends Controller {
 
     public function create() {
         return view('tickets.create', [
-            'categories' => CategoryController::getAll(),
+            'categories' => Category::all(),
+            'labels' => Label::all(),
             'users' => \App\Models\User::all()
         ]);
     }
@@ -32,16 +35,16 @@ class TicketController extends Controller {
             'user_id' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'category_id' => 'required'
         ]);
 
         $formFields['stat_id'] = "1";
         $formFields['priority_id'] = "1";
 
-        //dd($formFields);
 
-        Ticket::create($formFields);
+        $ticket = Ticket::create($formFields);
+        $ticket->categories()->sync($request->input('categories'));
+        $ticket->labels()->sync($request->input('labels'));
 
-        return redirect('/');
+        return redirect('/tickets');
     }
 }

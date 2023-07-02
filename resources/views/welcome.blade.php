@@ -10,7 +10,7 @@
 
 <body>
     <h2>
-        <a href="/users">Users</a>
+        <a href="/users">Usuários</a>
         <a href="/tickets">Tickets</a>
         <a href="/categories">Categorias</a>
         <a href="/labels">Etiquetas</a>

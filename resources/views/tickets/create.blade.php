@@ -29,14 +29,31 @@
         @enderror
     </div>
 
-    <div>
+    {{-- <div>
         <label for="category">Selecione a categoria</label>
         <select name="category_id" id="category">
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->title }}</option>
             @endforeach
         </select>
+    </div> --}}
+
+    <div>
+        <a>Selecione as categorias</a>
+        @foreach ($categories as $category)
+            <input type="checkbox" name="categories[]" id="category-{{ $category->id }}" value="{{ $category->id }}">
+            <label for="category-{{ $category->id }}">{{ $category->title }}</label>
+        @endforeach
     </div>
+
+    <div>
+        <a>Selecione as etiquetas</a>
+        @foreach ($labels as $label)
+            <input type="checkbox" name="labels[]" id="label-{{ $label->id }}" value="{{ $label->id }}">
+            <label for="label-{{ $label->id }}">{{ $label->title }}</label>
+        @endforeach
+    </div>
+
 
     <div>
         <button>
