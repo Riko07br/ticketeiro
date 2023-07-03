@@ -42,6 +42,10 @@ class User extends Authenticatable {
         'password' => 'hashed',
     ];
 
+    public function role() {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
     public function user_tickets() {
         return $this->hasMany(Ticket::class, 'user_id');
     }

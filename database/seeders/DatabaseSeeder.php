@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Role;
 use App\Models\Stat;
 use App\Models\User;
 use App\Models\Label;
@@ -31,19 +32,22 @@ class DatabaseSeeder extends Seeder {
      */
     public function run(): void {
 
-        User::factory()->create([
-            'user_type' => "adm",
-        ]);
+        $roles = array('admin', 'agent', 'user');
+        foreach ($roles as $r) {
+            Role::create([
+                'title' => $r,
+                'description' => $r
+            ]);
+        }
 
-        $userAmount = 10;
-        User::factory($userAmount)->create([
-            'user_type' => "usr",
-        ]);
+        User::factory()->create(['role_id' => "1"]);
 
         $agentAmount = 3;
-        User::factory($agentAmount)->create([
-            'user_type' => "agt",
-        ]);
+        User::factory($agentAmount)->create(['role_id' => "2"]);
+
+        $userAmount = 10;
+        User::factory($userAmount)->create(['role_id' => "3"]);
+
 
         $categories = array('Uncategorized', 'Payment', 'Usability', 'Tecnical', 'Fire related');
         foreach ($categories as $c) {
