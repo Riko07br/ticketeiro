@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\TicketController;
@@ -21,7 +22,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('categories', CategoryController::class)->only('index', 'create', 'store');
-Route::resource('labels', LabelController::class)->only('index', 'create', 'store');
-Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show');
-Route::resource('users', UserController::class)->only('index', 'show');
+
+Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
+Route::post('/auth', [AuthController::class, 'authenticate']);
+Route::post('/auth/logout', [AuthController::class, 'logout']);
+
+Route::middleware('admin')->group(function () {
+    Route::resource('categories', CategoryController::class)->only('index', 'create', 'store');
+    Route::resource('labels', LabelController::class)->only('index', 'create', 'store');
+    Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show');
+    Route::resource('users', UserController::class)->only('index', 'show');
+});
+
+Route::middleware('agent')->group(function () {
+    Route::resource('tickets', TicketController::class)->only('index', 'store', 'show');
+});
+
+Route::middleware('user')->group(function () {
+    Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show');
+});
