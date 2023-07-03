@@ -36,4 +36,9 @@
         <td>{{ $ticket->priority->title }}</td>
     </tr>
 
+    <tr>
+        <td><a href="/tickets/{{ $ticket->id }}/edit">Editar</a></td>
+        <td><a href="/tickets/{{ $ticket->id }}/delete">Deletar</a></td>
+    </tr>
+
 </table>

@@ -5,15 +5,6 @@
 <form method="POST" action="/tickets" enctype="multipart/form-data">
     @csrf
     <div>
-        <label for="user">Selecione o usuario - APAGAR</label>
-        <select name="user_id" id="user">
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
-            @endforeach
-        </select>
-    </div>
-
-    <div>
         <label for="title">Título</label>
         <input type="text" name="title" placeholder="Título do ticket" value="{{ old('title') }}" />
         @error('title')
@@ -28,15 +19,6 @@
             <p>{{ $message }}</p>
         @enderror
     </div>
-
-    {{-- <div>
-        <label for="category">Selecione a categoria</label>
-        <select name="category_id" id="category">
-            @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->title }}</option>
-            @endforeach
-        </select>
-    </div> --}}
 
     <div>
         <a>Selecione as categorias</a>

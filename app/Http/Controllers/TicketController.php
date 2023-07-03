@@ -32,19 +32,57 @@ class TicketController extends Controller {
 
     public function store(Request $request) {
         $formFields = $request->validate([
-            'user_id' => 'required',
             'title' => 'required',
             'description' => 'required',
+            'categories' => 'array',
+            'labels' => 'array',
         ]);
 
+        $formFields['user_id'] = auth()->id;
         $formFields['stat_id'] = "1";
         $formFields['priority_id'] = "1";
 
-
         $ticket = Ticket::create($formFields);
-        $ticket->categories()->sync($request->input('categories'));
-        $ticket->labels()->sync($request->input('labels'));
+        $ticket->categories()->sync($formFields['categories']);
+        $ticket->labels()->sync($formFields['labels']);
 
+        return redirect('/tickets');
+    }
+
+    public function edit(Ticket $ticket) {
+        return view('tickets.edit', [
+            'categories' => Category::all(),
+            'labels' => Label::all(),
+            'ticket' => $ticket,
+        ]);
+    }
+
+    public function update(Request $request, Ticket $ticket) {
+
+        $formFields = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'categories' => 'array',
+            'labels' => 'array',
+        ]);
+
+        $ticket->update([
+            'user_id' => $ticket->user->id,
+            'stat_id' => '1',
+            'priority_id' => '1',
+            'title' =>  $formFields['title'],
+            'description' =>  $formFields['description'],
+        ]);
+
+        $ticket->categories()->sync($formFields['categories']);
+        $ticket->labels()->sync($formFields['labels']);
+
+        return redirect('/tickets');
+    }
+
+    public function destroy(Ticket $ticket) {
+
+        $ticket->delete();
         return redirect('/tickets');
     }
 }
