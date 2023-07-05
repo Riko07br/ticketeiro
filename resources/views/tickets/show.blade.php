@@ -39,14 +39,14 @@
     @if (auth()->user()->role->title == 'admin')
         <tr>
             <td>Usuário: </td>
-            <td><a href="/admin/users/{{ $ticket->user->id }}">{{ $ticket->user->name }}</a></td>
+            <td><a href="/users/{{ $ticket->user->id }}">{{ $ticket->user->name }}</a></td>
         </tr>
 
         <tr>
             <td>Agente: </td>
             <td>
                 @if ($ticket->agent)
-                    <a href="/admin/users/{{ $ticket->agent->id }}">{{ $ticket->agent->name }}</a>
+                    <a href="/users/{{ $ticket->agent->id }}">{{ $ticket->agent->name }}</a>
                 @else
                     Sem agente definido
                 @endif

@@ -6,7 +6,7 @@
 <ul>
     @foreach ($tickets as $ticket)
         <li>
-            <a href="/tickets/{{ $ticket->id }}">
+            <a href="/admin/tickets/{{ $ticket->id }}">
                 {{ $ticket->title }}
             </a>
         </li>
