@@ -2,7 +2,7 @@
     <h1>Criar ticket</h1>
 </header>
 
-<form method="POST" action="/tickets" enctype="multipart/form-data">
+<form method="POST" action="/{{ auth()->user()->role->title }}/tickets" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="title">Título</label>

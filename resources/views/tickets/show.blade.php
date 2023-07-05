@@ -37,8 +37,14 @@
     </tr>
 
     <tr>
-        <td><a href="/tickets/{{ $ticket->id }}/edit">Editar</a></td>
-        <td><a href="/tickets/{{ $ticket->id }}/delete">Deletar</a></td>
+        <td><a href="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}/edit">Editar</a></td>
+        <td>
+            <form method="POST" action="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}">
+                @csrf
+                @method('DELETE')
+                <button>Deletar</button>
+            </form>
+        </td>
     </tr>
 
 </table>

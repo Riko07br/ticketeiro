@@ -4,7 +4,7 @@
 
 <h3>Editando ticket: {{ $ticket->id }}</h3>
 
-<form method="POST" action="/tickets/{{ $ticket->id }}" enctype="multipart/form-data">
+<form method="POST" action="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div>

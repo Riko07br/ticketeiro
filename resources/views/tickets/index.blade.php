@@ -2,7 +2,7 @@
     <h1>Todos os tickets</h1>
 </header>
 
-<a href="/tickets/create">
+<a href="/{{ auth()->user()->role->title }}/tickets/create">
     <b>Criar ticket</b>
 </a>
 
@@ -12,7 +12,7 @@
     <ul>
         @foreach ($tickets as $ticket)
             <li>
-                <a href="/tickets/{{ $ticket->id }}">
+                <a href="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}">
                     {{ $ticket->title }}
                 </a>
             </li>
