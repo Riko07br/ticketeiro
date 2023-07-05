@@ -23,6 +23,24 @@ class LabelController extends Controller {
         ]);
 
         Label::create($formFields);
-        return redirect('/');
+        return redirect('/labels');
+    }
+
+    public function edit(Label $label) {
+
+        return view('labels.edit', [
+            'label' => $label,
+        ]);
+    }
+
+    public function update(Request $request, Label $label) {
+
+        $formFields = $request->validate([
+            'title' => 'required',
+        ]);
+
+        $label->update($formFields);
+
+        return redirect('/labels');
     }
 }

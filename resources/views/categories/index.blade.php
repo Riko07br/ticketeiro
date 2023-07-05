@@ -12,7 +12,7 @@
     <ul>
         @foreach ($categories as $category)
             <li>
-                {{ $category->title }} - <a href="">editar</a>
+                {{ $category->title }} - <a href="/categories/{{ $category->id }}/edit">editar</a>
             </li>
         @endforeach
     </ul>

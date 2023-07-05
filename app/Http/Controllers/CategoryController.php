@@ -23,6 +23,30 @@ class CategoryController extends Controller {
         ]);
 
         Category::create($formFields);
-        return redirect('/');
+        return redirect('/categories');
     }
+
+    public function edit(Category $category) {
+
+        return view('categories.edit', [
+            'category' => $category,
+        ]);
+    }
+
+    public function update(Request $request, Category $category) {
+
+        $formFields = $request->validate([
+            'title' => 'required',
+        ]);
+
+        $category->update($formFields);
+
+        return redirect('/categories');
+    }
+
+    // public function destroy(Category $category) {
+
+    //     $category->delete();
+    //     return redirect('/categories');
+    // }
 }
