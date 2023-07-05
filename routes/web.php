@@ -22,22 +22,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
-Route::post('/auth', [AuthController::class, 'authenticate']);
-Route::post('/auth/logout', [AuthController::class, 'logout']);
-
-Route::middleware('admin')->group(function () {
-    Route::resource('categories', CategoryController::class)->only('index', 'create', 'store');
-    Route::resource('labels', LabelController::class)->only('index', 'create', 'store');
-    Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show', 'edit', 'update');
-    Route::resource('users', UserController::class)->only('index', 'show');
+Route::prefix('auth')->controller(AuthController::class)->group(function () {
+    Route::get('/register', 'register')->name('register');
+    Route::post('/', 'store')->name('store');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/authenticate', 'authenticate')->name('authenticate');
+    Route::post('/logout', 'logout')->name('logout');
 });
 
-// Route::middleware('agent')->group(function () {
-//     Route::resource('tickets', TicketController::class)->only('index', 'store', 'show');
-// });
+Route::middleware('admin')->group(function () {
+    Route::resource('categories', CategoryController::class)->only('index', 'create', 'store', 'edit', 'update');
+    Route::resource('labels', LabelController::class)->only('index', 'create', 'store', 'edit', 'update');
+    Route::resource('users', UserController::class)->only('index', 'show', 'edit', 'update');
+});
 
-// Route::middleware('user')->group(function () {
-//     Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show');
-// });
+Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::resource('tickets', TicketController::class);
+});
+
+Route::prefix('agent')->middleware('agent')->group(function () {
+    Route::resource('tickets', TicketController::class)->only('index', 'edit', 'update', 'show');
+});
+
+Route::prefix('user')->middleware('user')->group(function () {
+    Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show', 'destroy');
+});
