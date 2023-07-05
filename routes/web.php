@@ -45,5 +45,5 @@ Route::prefix('agent')->middleware('agent')->group(function () {
 });
 
 Route::prefix('user')->middleware('user')->group(function () {
-    Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show', 'destroy');
+    Route::resource('tickets', TicketController::class)->only('index', 'create', 'store', 'show');
 });

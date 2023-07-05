@@ -36,15 +36,44 @@
         <td>{{ $ticket->priority->title }}</td>
     </tr>
 
-    <tr>
-        <td><a href="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}/edit">Editar</a></td>
-        <td>
-            <form method="POST" action="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}">
-                @csrf
-                @method('DELETE')
-                <button>Deletar</button>
-            </form>
-        </td>
-    </tr>
+    @if (auth()->user()->role->title == 'admin')
+        <tr>
+            <td>Usuário: </td>
+            <td><a href="/admin/users/{{ $ticket->user->id }}">{{ $ticket->user->name }}</a></td>
+        </tr>
 
+        <tr>
+            <td>Agente: </td>
+            <td>
+                @if ($ticket->agent)
+                    <a href="/admin/users/{{ $ticket->agent->id }}">{{ $ticket->agent->name }}</a>
+                @else
+                    Sem agente definido
+                @endif
+            </td>
+        </tr>
+
+        <tr>
+            <td><a href="/admin/tickets/{{ $ticket->id }}/edit">Editar</a></td>
+            <td>
+                <form method="POST" action="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}">
+                    @csrf
+                    @method('DELETE')
+                    <button>Deletar</button>
+                </form>
+            </td>
+        </tr>
+    @endif
+
+    @if (auth()->user()->role->title == 'agent')
+        <tr>
+            <td>Usuário: </td>
+            <td>{{ $ticket->user->name }}</td>
+        </tr>
+        <tr>
+            <td><a href="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}/edit">Editar</a></td>
+            <td>
+            </td>
+        </tr>
+    @endif
 </table>

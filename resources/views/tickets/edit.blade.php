@@ -42,10 +42,45 @@
     </div>
 
     <div>
+        <label for="stat_id">Status: </label>
+        <select name="stat_id" id="stat_id">
+            @foreach ($stats as $stat)
+                <option value="{{ $stat->id }}" @if ($ticket->stat->id == $stat->id) selected @endif>
+                    {{ $stat->title }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div>
+        <label for="priority_id">Prioridade: </label>
+        <select name="priority_id" id="priority_id">
+            @foreach ($priorities as $priority)
+                <option value="{{ $priority->id }}" @if ($ticket->priority->id == $priority->id) selected @endif>
+                    {{ $priority->title }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    @if (auth()->user()->role->title == 'admin')
+        <div>
+            <label for="agent_id">Agente: </label>
+            <select name="agent_id" id="agent_id">
+                @foreach ($agents as $agent)
+                    <option value="{{ $agent->id }}" @if ($ticket->agent && $ticket->agent->id == $agent->id) selected @endif>
+                        {{ $agent->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    @endif
+
+    <div>
         <button>
             Confirmar edição
         </button>
 
-        <a href="/"> Voltar </a>
+        <a href="/{{ auth()->user()->role->title }}/tickets/{{ $ticket->id }}"> Voltar </a>
     </div>
 </form>
