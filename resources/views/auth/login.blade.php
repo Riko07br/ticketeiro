@@ -2,7 +2,7 @@
     <h1>Login</h1>
 </header>
 
-<form method="POST" action="/auth">
+<form method="POST" action="{{ route('authenticate') }}">
     @csrf
     <div>
         <label for="email">Email</label>
@@ -26,5 +26,6 @@
         <button>
             Entrar
         </button>
+        <a href="{{ route('register') }}"> Não tenho cadastro </a>
     </div>
 </form>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller {
 
@@ -29,6 +31,27 @@ class AuthController extends Controller {
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+    public function register() {
+        return view('auth.register');
+    }
+
+    public function store(Request $request) {
+        $formFields = $request->validate([
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => ['required', 'confirmed', 'min:6']
+        ]);
+
+        $formFields['password'] = bcrypt($formFields['password']);  //hash password
+        $formFields['role_id'] = "3";
+
+        $user = User::create($formFields);
+
+        auth()->login($user);
 
         return redirect('/');
     }
