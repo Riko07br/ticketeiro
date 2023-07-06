@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
     Route::post('/', 'store')->name('store');
