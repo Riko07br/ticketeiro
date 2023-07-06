@@ -1,15 +1,20 @@
-<header>
-    <h1>Usuário</h1>
-</header>
+<x-layout>
+    <x-layout-header>
+        Usuário
+    </x-layout-header>
 
-<h2>{{ $user->name }}</h2>
-<ul>
-    @foreach ($tickets as $ticket)
-        <li>
-            <a href="/admin/tickets/{{ $ticket->id }}">
-                {{ $ticket->title }}
-            </a>
-        </li>
-    @endforeach
+    <x-layout-content>
+        <h2>{{ $user->name }}</h2>
+        <ul>
+            @foreach ($tickets as $ticket)
+                <li>
+                    <a href="/admin/tickets/{{ $ticket->id }}">
+                        {{ $ticket->title }}
+                    </a>
+                </li>
+            @endforeach
 
-</ul>
+        </ul>
+    </x-layout-content>
+
+</x-layout>
