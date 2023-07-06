@@ -29,7 +29,9 @@
         <a href="/"><img class="w-20 py-2" src="{{ asset('images/logo.png') }}" alt=""
                 class="logo" /></a>
         <div>
-            Olá, <b>{{ auth()->user()->name }}</b>
+            @auth
+                Olá, <b>{{ auth()->user()->name }}</b>
+            @endauth
         </div>
     </nav>
 
