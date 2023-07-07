@@ -31,7 +31,13 @@
             </form>
         @else
             <x-sidebar-item href="{{ route('login') }}">
+                <i class="fa-solid fa-door-open pr-3"></i>
                 Login
+            </x-sidebar-item>
+
+            <x-sidebar-item href="{{ route('register') }}">
+                <i class="fa-solid fa-person-circle-plus pr-3"></i>
+                Criar conta
             </x-sidebar-item>
 
             <x-sidebar-item href="/about">
