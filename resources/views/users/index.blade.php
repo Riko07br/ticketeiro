@@ -1,21 +1,33 @@
 <x-layout>
     <x-layout-header>
-        Todos os usuários
+        Usuários
     </x-layout-header>
 
     <x-layout-content>
         @if (count($users) == 0)
             <h1>Sem tickets</h1>
         @else
-            <ul>
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-1 space-y-1 mx-1 pr-5 items-center">
                 @foreach ($users as $user)
-                    <li>
-                        <a href="/users/{{ $user->id }}">
-                            {{ $user->name }} - {{ $user->role->title }}
-                        </a>
-                    </li>
+                    <x-layout-button href="/users/{{ $user->id }} ">
+
+                        @switch($user->role->id)
+                            @case(1)
+                                <i class="fa-solid fa-user-tie pr-3"></i>
+                            @break
+
+                            @case(2)
+                                <i class="fa-solid fa-image-portrait pr-3"></i>
+                            @break
+
+                            @default
+                                <i class="fa-solid fa-user pr-3"></i>
+                        @endswitch
+
+                        {{ $user->name }}
+                    </x-layout-button>
                 @endforeach
-            </ul>
+            </div>
         @endif
     </x-layout-content>
 

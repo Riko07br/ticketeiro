@@ -7,8 +7,9 @@
         <form method="POST" action="/{{ auth()->user()->role->title }}/tickets" enctype="multipart/form-data">
             @csrf
             <div>
-                <label for="title">Título</label>
-                <input type="text" name="title" placeholder="Título do ticket" value="{{ old('title') }}" />
+                <label for="title" class="inline-block text-lg mb-2">Título</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title"
+                    placeholder="Título do ticket" value="{{ old('title') }}" />
                 @error('title')
                     <p>{{ $message }}</p>
                 @enderror

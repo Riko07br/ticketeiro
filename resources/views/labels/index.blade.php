@@ -30,8 +30,9 @@
 
                 @foreach ($labels as $label)
                     <li class="flex justify-between items-center bg-gray-200  pl-3">
-                        <div>{{ $label->title }} <a
-                                class="rounded w-3 px-1 bg-blue-400">{{ $label->tickets->count() }}</a>
+                        <div>{{ $label->title }} <a class="rounded w-3 px-1 bg-blue-400">
+                                {{ $label->tickets->count() }}
+                            </a>
                         </div>
                         <x-layout-button href="/labels/{{ $label->id }}/edit">Editar</x-layout-button>
                     </li>
