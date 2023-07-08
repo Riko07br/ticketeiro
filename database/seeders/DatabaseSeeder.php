@@ -40,7 +40,11 @@ class DatabaseSeeder extends Seeder {
             ]);
         }
 
-        User::factory()->create(['role_id' => "1"]);
+        User::factory()->create([
+            'role_id' => "1",
+            'email' => 'adm@adm.com',
+            'password' => '123456',
+        ]);
 
         $agentAmount = 3;
         User::factory($agentAmount)->create(['role_id' => "2"]);
@@ -49,28 +53,28 @@ class DatabaseSeeder extends Seeder {
         User::factory($userAmount)->create(['role_id' => "3"]);
 
 
-        $categories = array('Uncategorized', 'Payment', 'Usability', 'Tecnical', 'Fire related');
+        $categories = array('Pagamento', 'Usabilidade', 'Tecnica', 'Fogo');
         foreach ($categories as $c) {
             Category::create([
                 'title' => $c
             ]);
         }
 
-        $labels = array('bug', 'question', 'feedback', 'annoy the agents');
+        $labels = array('Bug', 'Dúvida', 'Feedback', 'Encher o saco');
         foreach ($labels as $l) {
             Label::create([
                 'title' => $l
             ]);
         }
 
-        $stats = array('open', 'working', 'closed');
+        $stats = array('Criado', 'Designado', 'Pausado', 'Resolvido', 'Não resolvido');
         foreach ($stats as $s) {
             Stat::create([
                 'title' => $s
             ]);
         }
 
-        $priorities = array('very low', 'low', 'medium', 'high', 'very high');
+        $priorities = array('Baixíssima', 'Baixa', 'Normal', 'Urgente', 'Urgentissíma');
         foreach ($priorities as $p) {
             Priority::create([
                 'title' => $p
