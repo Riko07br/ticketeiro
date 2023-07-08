@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('ticket_id');
+            $table->boolean('show_user');   //let users see the comment
             $table->mediumText('comment');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
