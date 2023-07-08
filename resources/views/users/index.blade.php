@@ -9,23 +9,7 @@
         @else
             <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-1 space-y-1 mx-1 pr-5 items-center">
                 @foreach ($users as $user)
-                    <x-layout-button href="/users/{{ $user->id }} ">
-
-                        @switch($user->role->id)
-                            @case(1)
-                                <i class="fa-solid fa-user-tie pr-3"></i>
-                            @break
-
-                            @case(2)
-                                <i class="fa-solid fa-image-portrait pr-3"></i>
-                            @break
-
-                            @default
-                                <i class="fa-solid fa-user pr-3"></i>
-                        @endswitch
-
-                        {{ $user->name }}
-                    </x-layout-button>
+                    <x-card-user :user='$user' />
                 @endforeach
             </div>
         @endif
