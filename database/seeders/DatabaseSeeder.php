@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder {
         foreach ($roles as $r) {
             Role::create([
                 'title' => $r,
-                'description' => $r
+                'description' => $r,
             ]);
         }
 
@@ -56,7 +56,8 @@ class DatabaseSeeder extends Seeder {
         $categories = array('Pagamento', 'Usabilidade', 'Tecnica', 'Fogo');
         foreach ($categories as $c) {
             Category::create([
-                'title' => $c
+                'title' => $c,
+                'description' => $c,
             ]);
         }
 
@@ -84,8 +85,8 @@ class DatabaseSeeder extends Seeder {
         $ticketAmount = 5;
         for ($i = 1; $i < ($ticketAmount + 1); $i++) {
             $ticket = Ticket::factory()->create([
-                'user_id' => rand(1, $userAmount),
-                'agent_id' => rand($userAmount + 1, $userAmount + $agentAmount),
+                'agent_id' => rand(2, 2 + $agentAmount),
+                'user_id' => rand(3 + $agentAmount, 3 + $agentAmount + $userAmount),
                 'stat_id' => rand(1, count($stats)),
                 'priority_id' => rand(1, count($priorities))
             ]);
