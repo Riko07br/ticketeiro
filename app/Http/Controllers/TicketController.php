@@ -117,6 +117,8 @@ class TicketController extends Controller {
 
         if ($formFields['agent_id']) {
             $ticket->update(['agent_id' =>  $formFields['agent_id']]);
+        } else {
+            $ticket->update(['agent_id' =>  null]);
         }
 
         $ticket->categories()->sync($formFields['categories']);
