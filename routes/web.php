@@ -37,7 +37,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 Route::middleware('admin')->group(function () {
     Route::resource('categories', CategoryController::class)->only('index', 'create', 'store', 'edit', 'update');
     Route::resource('labels', LabelController::class)->only('index', 'create', 'store', 'edit', 'update');
-    Route::resource('users', UserController::class)->only('index', 'show', 'edit', 'update');
+    Route::resource('users', UserController::class)->only('index', 'show', 'edit', 'update', 'store');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

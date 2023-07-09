@@ -33,7 +33,7 @@ class UserController extends Controller {
 
     public function edit(User $user) {
 
-        return view('user.edit', [
+        return view('users.edit', [
             'user' => $user,
         ]);
     }
@@ -43,11 +43,20 @@ class UserController extends Controller {
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'role_id' => 'required',
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'confirmed', 'min:6']
+            'email' => ['required', 'email'],
+            'password' => ['nullable', 'min:6']
         ]);
 
-        $formFields['password'] = bcrypt($formFields['password']);  //hash password
+        if ($formFields['email'] != $user->email) {
+            $formFields['email'] = $request->validate([
+                'email' => [Rule::unique('users', 'email')],
+            ]);
+        }
+
+        if ($formFields['password'])
+            $formFields['password'] = bcrypt($formFields['password']);  //hash password
+        else
+            $formFields['password'] = $user->password;
 
         if ($user->role->id == "1") {
             $formFields['role_id'] = "1";
@@ -56,5 +65,6 @@ class UserController extends Controller {
         //ainda tem mais coisas por ter agente e usuario
 
         $user->update($formFields);
+        return redirect('/users');
     }
 }
