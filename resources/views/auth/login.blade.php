@@ -4,33 +4,40 @@
     </x-layout-header>
 
     <x-layout-content>
-        <form method="POST" action="{{ route('authenticate') }}">
-            @csrf
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" value="{{ old('email') }}" />
+        <div class="bg-gray-200 pl-3 mr-5 mb-5">
+            <form method="POST" action="{{ route('authenticate') }}" class="flex flex-col w-96 space-y-2 pb-2">
+                @csrf
+                <div>
+                    <label for="email" class="text-sm mb-1">E-mail</label>
+                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Digite seu e-mail"
+                        class="border border-gray-200 rounded p-2 w-full" />
+                    @error('email')
+                        <p>{{ $message }}</p>
+                    @enderror
+                </div>
 
-                @error('email')
-                    <p>{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <label for="password">Senha</label>
-                <input type="password" name="password" value="{{ old('password') }}" />
-
-                @error('password')
-                    <p>{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div>
-                <button>
-                    Entrar
+                <div>
+                    <label for="password" class="text-sm mb-1">Senha</label>
+                    <input type="password" name="password" value="{{ old('password') }}" placeholder="Digite sua senha"
+                        class="border border-gray-200 rounded p-2 w-full" />
+                    @error('password')
+                        <p>{{ $message }}</p>
+                    @enderror
+                </div>
+                <button type="submit" class="text-base h-10 w-fit rounded bg-blue-400 right-0 hover:bg-blue-600">
+                    <b class="px-5">
+                        <i class="fa-solid fa-door-open pr-3"></i>
+                        Entrar
+                    </b>
                 </button>
-                <a href="{{ route('register') }}"> Não tenho cadastro </a>
-            </div>
-        </form>
+                <div>
+                    <u>
+                        <a href="{{ route('register') }}" class="text-blue-400 hover:text-blue-600">
+                            Não tenho cadastro
+                        </a>
+                    </u>
+                </div>
+            </form>
+        </div>
     </x-layout-content>
-
 </x-layout>
