@@ -1,6 +1,6 @@
 @props(['user'])
 
-<div class="flex flex-col items-center justify-between overflow-hidden shadow bg-gray-200 h-24 w-56 rounded-xl ">
+<div class="flex flex-col items-center justify-between overflow-hidden shadow bg-gray-200 h-16 w-56 rounded-xl ">
     <div class="flex flex-row w-full justify-between px-2 pt-1">
         @switch($user->role->id)
             @case(1)
@@ -25,22 +25,8 @@
         @endswitch
 
     </div>
-    <a href="/users/{{ $user->id }}">
+    <a href="/users/{{ $user->id }}" class="h-full w-full text-center">
         <b>{{ $user->name }}</b>
     </a>
-    <div class="flex flex-row text-center w-full h-8 bg-blue-400">
-        <a class="w-1/2 hover:bg-blue-600">
-            <b>
-                <i class="fa-sharp fa-solid fa-ticket-simple pr-1"></i>
-                Tickets
-            </b>
-        </a>
 
-        <a href="/users/{{ $user->id }}/edit" class="w-1/2 hover:bg-blue-600">
-            <b>
-                <i class="fa-solid fa-pen-to-square pr-1"></i>
-                Editar
-            </b>
-        </a>
-    </div>
 </div>
