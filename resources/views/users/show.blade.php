@@ -25,46 +25,20 @@
                         {{ $user->email }}
                     </div>
                 </div>
+                <x-layout-button href="/users/{{ $user->id }}/edit">Editar</x-layout-button>
             </div>
             <div class="flex flex-col p-4 w-full h-fit space-y-1 border border-gray-700 rounded-lg">
                 <p class="text-xl">Tickets</p>
-                <ul class="flex flex-col space-y-1">
+                <ul class="space-y-1">
                     @foreach ($tickets as $ticket)
-                        <a href="/admin/tickets/{{ $ticket->id }}">
-                            <li class="w-full px-2 py-1 bg-gray-300 hover:bg-gray-500 hover:rounded-lg">
-                                <p class="pb-2">
-                                    {{ $ticket->title }}
-                                </p>
-                                <div class="flex flex-row justify-between w-full">
-                                    @php
-                                        $bgcolor = 'bg-green-300';
-                                        switch ($ticket->priority->id) {
-                                            case 1:
-                                                $bgcolor = 'bg-green-300';
-                                                break;
-                                            case 2:
-                                                $bgcolor = 'bg-green-500';
-                                                break;
-                                            case 3:
-                                                $bgcolor = 'bg-yellow-500';
-                                                break;
-                                            case 4:
-                                                $bgcolor = 'bg-orange-500';
-                                                break;
-                                            default:
-                                                $bgcolor = 'bg-red-500';
-                                                break;
-                                        }
-                                    @endphp
-                                    <b class="px-2 rounded {{ $bgcolor }}">{{ $ticket->priority->title }}</b>
-                                    <b class="px-2 rounded bg-black text-white">{{ $ticket->stat->title }}</b>
-                                </div>
-                            </li>
-                        </a>
+                        <li>
+                            <x-ticket-card :ticket='$ticket' />
+                        </li>
                     @endforeach
 
                 </ul>
             </div>
+
         </div>
     </x-layout-content>
 
